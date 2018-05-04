@@ -4,7 +4,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div *ngIf="username == 'UserName'" class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
         <a class="nav-link" style="cursor: pointer" routerLink="register">Register</a>
@@ -13,7 +13,14 @@
         <a class="nav-link disabled" style="cursor: pointer" routerLink="login">Login</a>
       </li>
     </ul>
-    <h5></h5>
+  </div>
+  <div *ngIf="username != 'UserName'" class="collapse navbar-collapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" style="cursor: pointer" (click)="logout()">Logout</a>
+      </li>
+    </ul>
+    <h5>{{username}}</h5>
   </div>
 </nav>
 
