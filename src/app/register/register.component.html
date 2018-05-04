@@ -1,0 +1,23 @@
+<div class="form-control">
+  <form (ngSubmit)="register()" #f="ngForm">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" name="name" placeholder="name" ngModel required #name="ngModel">
+    </div>
+    <span class="help-block" *ngIf="!name.valid && name.touched">Please enter a valid name!</span>
+  <div class="form-group">
+    <label for="email">Email address</label>
+    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email" ngModel
+    required email #email="ngModel">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+    <span class="help-block" *ngIf="!email.valid && email.touched">Please enter a valid email!</span>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" name="password" placeholder="Password" ngModel required
+      #password="ngModel">
+    </div>
+    <span class="help-block" *ngIf="!password.valid && password.touched">Please enter a valid email!</span>
+  <button [disabled]="!f.valid" type="submit" class="btn btn-primary">Register</button>
+</form>
+</div>
