@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
       },
       (errors) => console.log(errors)
     );
-    this.usersService.username.next(this.user.name);
+    this.usersService.username.next((JSON.parse(localStorage.getItem('user'))).name);
     this.router.navigateByUrl('');
   }
 
