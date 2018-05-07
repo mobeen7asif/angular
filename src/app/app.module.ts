@@ -10,8 +10,14 @@ import {AppRoutingModule} from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import {FormsModule} from '@angular/forms';
 import {UserService} from './services/user.service';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import {AppService} from './app.service';
+import {SlimLoadingBarModule} from 'ng2-slim-loading-bar';
+import {LoaderInterceptor} from './interceptors/loader-interceptor.service';
+import {AuthGuardService} from './services/auth-guard.service';
+import { PlacesComponent } from './places/places.component';
+import {PlaceService} from './services/place.service';
+
 
 
 
@@ -23,16 +29,22 @@ import {AppService} from './app.service';
     RegisterComponent,
     HeaderComponent,
     HomeComponent,
+    PlacesComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SlimLoadingBarModule
   ],
-  providers: [
-    UserService, AppService
-  ],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: LoaderInterceptor,
+    multi: true,
+  } ,   AppService , UserService , AuthGuardService, PlaceService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+}

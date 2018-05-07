@@ -12,7 +12,7 @@ import {Router} from '@angular/router';
 export class RegisterComponent implements OnInit {
   @ViewChild('f') signupForm: NgForm;
   user: User;
-   private username: any;
+  private username: any;
   constructor(private usersService: UserService, private router: Router) {
   }
 
@@ -25,15 +25,17 @@ export class RegisterComponent implements OnInit {
     this.user.email = this.signupForm.value.email;
     this.user.password = this.signupForm.value.password;
     this.usersService.registerUser(this.user).subscribe(
-      (response) => {
-        console.log(response);
+      (response: any) => {
+        const user = response.data;
+        localStorage.setItem('user', JSON.stringify(user));
+        this.usersService.username.next(user.name);
+        this.router.navigateByUrl('');
       },
-      (errors) => console.log(errors)
+      (errors: any) => {
+        // console.log(errors.error.error.messages[0]);
+        alert('Something went wrong with server');
+      }
     );
-     // localStorage.setItem('user', JSON.stringify(this.response));
-     // console.log(this.response);
-     this.usersService.username.next(this.user.name);
-    this.router.navigateByUrl('');
   }
 
 }

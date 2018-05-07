@@ -3,11 +3,15 @@ import {User} from '../models/User';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {AppService} from '../app.service';
 import {Subject} from 'rxjs/Subject';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/Observable/throw';
+import {SlimLoadingBarService} from 'ng2-slim-loading-bar';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class UserService {
   username = new Subject();
-  constructor(private http: HttpClient, private app_service: AppService) { }
+  constructor(private http: HttpClient, private app_service: AppService, private _loadingBar: SlimLoadingBarService) {}
   registerUser(user: User) {
     const body = new HttpParams()
       .set('name', user.name)
@@ -18,8 +22,7 @@ export class UserService {
       {
         headers: new HttpHeaders()
           .set('Content-Type', 'application/x-www-form-urlencoded')
-      }
-    );
+      });
   }
   loginUser(user: User) {
     const body = new HttpParams()

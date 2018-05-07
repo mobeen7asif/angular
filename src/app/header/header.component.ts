@@ -17,17 +17,17 @@ export class HeaderComponent implements OnInit {
       alert(this.username);
     }
     this.usersService.username.subscribe(
-      (name: string) => {
-        this.username = name;
-      }
-    );
+        (name: string) => {
+          this.username = name;
+        }
+      );
   }
 
   ngOnInit() {
   }
 
   logout() {
-    localStorage.setItem('user','');
+    localStorage.setItem('user',null);
     this.username = 'UserName';
     alert(localStorage.getItem('user'));
     this.router.navigateByUrl('login');
