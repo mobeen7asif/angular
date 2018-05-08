@@ -17,6 +17,8 @@ import {LoaderInterceptor} from './interceptors/loader-interceptor.service';
 import {AuthGuardService} from './services/auth-guard.service';
 import { PlacesComponent } from './places/places.component';
 import {PlaceService} from './services/place.service';
+import { PlaceDetailComponent } from './place-detail/place-detail.component';
+import { PlacesStartComponent } from './places/places-start/places-start.component';
 
 
 
@@ -30,6 +32,8 @@ import {PlaceService} from './services/place.service';
     HeaderComponent,
     HomeComponent,
     PlacesComponent,
+    PlaceDetailComponent,
+    PlacesStartComponent,
   ],
   imports: [
     BrowserModule,

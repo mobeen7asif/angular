@@ -14,7 +14,6 @@ export class HeaderComponent implements OnInit {
     const check = localStorage.getItem('user');
     if (check != null && check !== '') {
       this.username = (JSON.parse(localStorage.getItem('user'))).name;
-      alert(this.username);
     }
     this.usersService.username.subscribe(
         (name: string) => {

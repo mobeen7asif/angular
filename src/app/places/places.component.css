@@ -1,0 +1,9 @@
+ul {
+  margin-top: 20px;
+}
+ul li {
+  cursor: pointer;
+}
+li {
+  width: 50%;
+}

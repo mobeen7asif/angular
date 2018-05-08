@@ -5,6 +5,7 @@ import {RegisterComponent} from './register/register.component';
 import {HomeComponent} from './home/home.component';
 import {PlacesComponent} from './places/places.component';
 import {AuthGuardService} from './services/auth-guard.service';
+import {PlaceDetailComponent} from './place-detail/place-detail.component';
 
 
 
@@ -12,7 +13,11 @@ const appRoutes: Routes = [
   { path: '', component: HomeComponent},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent},
-  { path: 'events', component: PlacesComponent, canActivate: [AuthGuardService]}
+  { path: 'events', component: PlacesComponent, canActivate: [AuthGuardService], children: [
+      {
+        path: ':id', component: PlaceDetailComponent, canActivate: [AuthGuardService]
+      }
+    ]}
 ];
 
 @NgModule({
