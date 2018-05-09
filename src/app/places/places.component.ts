@@ -16,8 +16,8 @@ export class PlacesComponent implements OnInit {
   ngOnInit() {
     this.placesService.getplaces().subscribe(
       (response: any) => {
-         this.places = response.data;
-         this.placesService.places = response.data;
+        this.places = response.data;
+        this.placesService.places.next(response.data);
       },
       (errors: any) => {
         console.log(errors.error.error.messages[0]);
